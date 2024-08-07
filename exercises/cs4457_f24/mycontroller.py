@@ -11,7 +11,7 @@ from time import sleep
 from myutil import install_table_entry, read_table_entries, \
                    print_counter, \
                    write_table_entry, write_or_overwrite_table_entry, \
-                   decode_packet_in_metadtaa
+                   decode_packet_in_metadata
 
 from scapy.layers.l2 import Ether
 import scapy.all
