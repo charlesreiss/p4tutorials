@@ -128,6 +128,10 @@ control MyIngress(inout headers hdr,
      * This uses the "multicast" (send to multiple) feature of the switch,
      * which is configured in mycontroller.py. The multicast group number (1)
      * has to match that configuration.
+     *
+     * This queues the packet for all output ports (except the "CPU port" to
+     * the controller). Code in MyEgress prevents packets from being transmitted
+     * back on the port they came in on.
      */
     action broadcast() {
         standard_metadata.mcast_grp = 1;
@@ -148,7 +152,15 @@ control MyIngress(inout headers hdr,
         );
     }
 
-    /* Table t
+    /*
+     * Table to decide what to do with packets based on their destination ethernet addresses.
+     *
+     * With the default settings, each packet is broadcast to all output ports except the
+     * one it came in on.
+     *
+     * Without any changes being made to this file, the controller can add entries to this table
+     * to make MAC addresses or ranges of MAC addresses forward to a particular port.
+     */
     table mac_dst_lpm {
         key = {
             hdr.ethernet.dstAddr : lpm;
