@@ -1,3 +1,4 @@
+import sys
 # Import P4Runtime lib from parent utils dir
 # Probably there's a better way of doing this.
 sys.path.append(
