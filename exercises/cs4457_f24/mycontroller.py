@@ -38,8 +38,8 @@ def process_packet(p4info_helper, switch, packet):
     print("-----------------------------")
     print("Packet received by controller:")
     metadata = decode_packet_in_metadata(
-        p4info_helper=p4info_helper,
-        switch=switch,
+        p4info_helper,
+        switch,
         packet.metadata
     )
     print(f"Controller metadata = {metadata}")
