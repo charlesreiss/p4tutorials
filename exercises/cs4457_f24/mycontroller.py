@@ -37,7 +37,11 @@ def process_packet(p4info_helper, switch, packet):
     frame = Ether(packet.payload)
     print("-----------------------------")
     print("Packet received by controller:")
-    metadata = decode_packet_in_metadata(packet.metadata)
+    metadata = decode_packet_in_metadata(
+        p4info_helper=p4info_helper,
+        switch=switch,
+        packet.metadata
+    )
     print(f"Controller metadata = {metadata}")
     print("Packet dump")
     frame.show()
