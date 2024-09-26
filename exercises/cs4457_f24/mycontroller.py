@@ -32,7 +32,7 @@ import grpc
 def process_packet(p4info_helper, switch, packet):
     """
     Called by main() for each packet sent from the data plane to the controller.
-    In the default implementation, 
+    In the default implementation, just output the information.
     """
     frame = Ether(packet.payload)
     print("-----------------------------")
