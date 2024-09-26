@@ -89,7 +89,7 @@ def decode_packet_in_metadata(p4info_helper, switch, the_metadata):
     result = {}
     for field in the_metadata:
         field_info = fields_by_id[field.metadata_id]
-        expect_bytes = field_info.bitwidth / 8
+        expect_bytes = field_info.bitwidth // 8
         cur_value = bytearray(expect_bytes)
         cur_value[0:len(field.value)] = field.value
     return result
