@@ -1,5 +1,6 @@
 import sys
 import os
+import os.path
 # Import P4Runtime lib from parent utils dir
 # Probably there's a better way of doing this.
 sys.path.append(
@@ -82,7 +83,7 @@ def write_or_overwrite_table_entry(p4info_helper, switch, table_name, match_fiel
 def decode_packet_in_metadata(p4info_helper, switch, the_metadata):
     schema = p4info_helper.get('controller_packet_metadata', name='packet_in')
     fields_by_id = {}
-    for field_info in metadata_struct.metadata:
+    for field_info in schema.metadata:
         fields_by_id[field_info.id] = field_info
 
     result = {}
