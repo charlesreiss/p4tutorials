@@ -8,6 +8,7 @@ sys.path.append(
                  '../../utils/'))
 import p4runtime_lib.bmv2
 import p4runtime_lib.helper
+import grpc
 from p4runtime_lib.error_utils import printGrpcError
 from p4runtime_lib.switch import ShutdownAllSwitchConnections
 from p4runtime_lib.convert import decodeNum
@@ -92,5 +93,5 @@ def decode_packet_in_metadata(p4info_helper, switch, the_metadata):
         expect_bytes = field_info.bitwidth // 8
         cur_value = bytearray(expect_bytes)
         cur_value[0:len(field.value)] = field.value
-        result[field_info.name] = cur_value
+        result[field_info.name] = bytes(cur_value)
     return result
